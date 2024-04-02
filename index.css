@@ -1,3 +1,53 @@
 #heading {
     color: blue;
 }
+
+.header {
+    display:flex;
+    justify-content: space-between;
+    border: 1px solid black;
+}
+
+.logo {
+    width: 150px;
+}
+
+.nav-items {
+    padding: 0px 20px;
+}
+
+.nav-items > ul {
+    display: flex;
+    list-style-type: none;
+    font-size: 20px;
+}
+
+.nav-items > ul > li {
+    padding: 10px;
+    margin: 10px;
+}
+
+.restro-container {
+    display: flex ;
+    flex-wrap: wrap;
+}
+
+.restro-card {
+    margin: 5px;
+    width:200px;
+    height: 400px; 
+    padding: 5px;
+}
+
+.restro-card:hover {
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.search {
+    padding: 10px;
+}
+
+.restro-img {
+    width: 100%;
+}
