@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "../card/RestaurantCard";
 import Shimmer from "../Shimmer/Shimmer";
+import { RESTAURANT_SWIGGY_API } from "../../utils/constants";
 
 const BodyFile = () => {
   const [reslists, setResLists] = useState([]);
@@ -35,9 +36,7 @@ const BodyFile = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=22.3071588&lng=73.1812187&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING "
-      );
+      const data = await fetch(RESTAURANT_SWIGGY_API);
       const json = await data.json();
 
       // Optional Chaining
@@ -61,8 +60,6 @@ const BodyFile = () => {
   // if (reslists?.length === 0) {
   //   return <Shimmer />;
   // }
-
-  console.log("Body Rendered");
 
   return loading ? (
     <Shimmer />
