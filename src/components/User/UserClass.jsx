@@ -19,23 +19,27 @@ class UserClass extends Component {
     const data = await fetch("https://api.github.com/users/aminronak007");
     const json = await data.json();
 
-    console.log("json", json);
     this.setState({
       userInfo: json,
     });
+
+    this.timer = setInterval(() => {
+      console.log("Namaste React");
+    }, 1000);
   }
 
-  // componentDidUpdate() {
-  //   console.log(this.props.name + " Child Component Did Update");
-  // }
+  componentDidUpdate() {
+    console.log(this.props.name + " Child Component Did Update");
+  }
 
-  // componentWillUnmount() {
-  //   console.log(this.props.name + " Child Component will Unmount");
-  // }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    console.log(this.props.name + " Child Component will Unmount");
+  }
 
   render() {
     const { avatar_url, name, location } = this.state.userInfo;
-    debugger;
+    // debugger;
     console.log(this.props.name + " Child Render");
     return (
       <div className="user-card">

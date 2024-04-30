@@ -23,6 +23,15 @@ const RestaurantMenu = () => {
 
   useEffect(() => {
     fetchMenu();
+    const timer = setInterval(() => {
+      console.log("React");
+    }, 1000);
+
+    // Unmounting Phase
+    return () => {
+      clearInterval(timer);
+    };
+    // Unmounting Phase
   }, []);
 
   if (resInfo === null) return <Shimmer />;
