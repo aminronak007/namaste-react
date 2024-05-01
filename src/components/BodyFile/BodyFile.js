@@ -75,20 +75,31 @@ const BodyFile = () => {
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="flex">
+        <div className="search m-4 p-4">
           <input
+            className="border border-solid border-black px-4 py-2 rounded-sm"
             type="text"
             name="search"
             onChange={handleChange}
             placeholder="Search"
             value={search}
           />
-          <button onClick={handleSearch}>Search</button>
+          <button
+            className="px-4 py-2 bg-gray-100 ml-1 rounded-sm"
+            onClick={handleSearch}
+          >
+            Search
+          </button>
         </div>
-        <button className="filter-btn" onClick={() => handleTopRatedClick()}>
-          Top Rated Button
-        </button>
+        <div className="search m-4 p-4 items-center">
+          <button
+            className="px-4 py-2 bg-green-100 ml-1 rounded-sm"
+            onClick={() => handleTopRatedClick()}
+          >
+            Top Rated Button
+          </button>
+        </div>
       </div>
       <div className="restro-container">
         {/* Restaurant Card */}

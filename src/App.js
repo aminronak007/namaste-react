@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import Header from "./components/header/Header";
+import Header from "./components/header/Header.js";
 import Error from "./components/Error/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import routes from "./routes/routes.js";
