@@ -10,8 +10,6 @@ const BodyFile = () => {
   const [search, setSearch] = useState("");
   const onlineStatus = useOnlineStatus();
 
-  console.log("onlineStatus", onlineStatus);
-
   const handleTopRatedClick = () => {
     setResLists(reslists.filter((res) => res.info.avgRating >= 4.4));
   };

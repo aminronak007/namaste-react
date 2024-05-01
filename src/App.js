@@ -1,20 +1,17 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/header/Header";
-import BodyFile from "./components/BodyFile/BodyFile";
-import About from "./pages/About/About";
-import Contact from "./pages/Contact/Contact";
 import Error from "./components/Error/Error";
-import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-
-// Chunking, Code Splitting, Lazy Loading, Dynamic Bundling for scaling your large scale web application
+import routes from "./routes/routes.js";
 
 const AppLayout = () => {
   return (
     <div className="app">
       <Header />
-      <Outlet />
+      <Suspense fallback={<h6>Loading...</h6>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
@@ -23,24 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-    children: [
-      {
-        path: "/",
-        element: <BodyFile />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
-      },
-      {
-        path: "/restaurants/:resId",
-        element: <RestaurantMenu />,
-      },
-    ],
+    children: routes,
     errorElement: <Error />,
   },
 ]);
