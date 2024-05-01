@@ -8,6 +8,8 @@ import Error from "./components/Error/Error";
 import RestaurantMenu from "./components/RestaurantMenu/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 
+// Chunking, Code Splitting, Lazy Loading, Dynamic Bundling for scaling your large scale web application
+
 const AppLayout = () => {
   return (
     <div className="app">

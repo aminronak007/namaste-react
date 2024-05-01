@@ -2,11 +2,16 @@ import React, { useEffect, useState } from "react";
 import RestaurantCard from "../card/RestaurantCard";
 import Shimmer from "../Shimmer/Shimmer";
 import { RESTAURANT_SWIGGY_API } from "../../utils/constants";
+import useOnlineStatus from "../../hooks/useOnlineStatus";
 
 const BodyFile = () => {
   const [reslists, setResLists] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
+  const onlineStatus = useOnlineStatus();
+
+  console.log("onlineStatus", onlineStatus);
+
   const handleTopRatedClick = () => {
     setResLists(reslists.filter((res) => res.info.avgRating >= 4.4));
   };
@@ -60,6 +65,13 @@ const BodyFile = () => {
   // if (reslists?.length === 0) {
   //   return <Shimmer />;
   // }
+
+  if (!onlineStatus)
+    return (
+      <h1>
+        Looks like you're offline !! Please check your internet connection.
+      </h1>
+    );
 
   return loading ? (
     <Shimmer />
