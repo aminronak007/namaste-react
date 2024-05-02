@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from "react";
-import RestaurantCard from "../card/RestaurantCard";
+import RestaurantCard, { withOpenCloseLabel } from "../card/RestaurantCard";
 import Shimmer from "../Shimmer/Shimmer";
 import { RESTAURANT_SWIGGY_API } from "../../utils/constants";
 import useOnlineStatus from "../../hooks/useOnlineStatus";
+import { Link } from "react-router-dom";
 
 const BodyFile = () => {
   const [reslists, setResLists] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const onlineStatus = useOnlineStatus();
+
+  const RestaurantCardOpened = withOpenCloseLabel(RestaurantCard);
 
   const handleTopRatedClick = () => {
     setResLists(reslists.filter((res) => res.info.avgRating >= 4.4));
@@ -71,6 +74,8 @@ const BodyFile = () => {
       </h1>
     );
 
+  console.log("reslists", reslists);
+
   return loading ? (
     <Shimmer />
   ) : (
@@ -101,10 +106,22 @@ const BodyFile = () => {
           </button>
         </div>
       </div>
-      <div className="restro-container">
+      <div className="flex flex-wrap">
         {/* Restaurant Card */}
         {reslists.map((restaurant) => (
-          <RestaurantCard key={restaurant?.info?.id} data={restaurant?.info} />
+          <Link
+            to={`/restaurants/${restaurant?.info?.name
+              .toLowerCase()
+              .split(" ")
+              .join("-")}-${restaurant?.info?.id}`}
+            key={restaurant?.info?.id}
+          >
+            {restaurant.info.isOpen ? (
+              <RestaurantCardOpened data={restaurant?.info} />
+            ) : (
+              <RestaurantCard data={restaurant?.info} />
+            )}
+          </Link>
         ))}
         {/* Restaurant Card */}
       </div>
