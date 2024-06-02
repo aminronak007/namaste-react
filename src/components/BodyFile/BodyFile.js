@@ -74,8 +74,6 @@ const BodyFile = () => {
       </h1>
     );
 
-  console.log("reslists", reslists);
-
   return loading ? (
     <Shimmer />
   ) : (
