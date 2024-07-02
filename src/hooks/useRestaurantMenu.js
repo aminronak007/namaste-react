@@ -23,6 +23,18 @@ const useRestaurantMenu = (resId) => {
     fetchData();
   }, []);
 
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     console.log("React");
+  //   }, 1000);
+
+  //   // Unmounting Phase
+  //   return () => {
+  //     clearInterval(timer);
+  //   };
+  //   // Unmounting Phase
+  // }, []);
+
   return resInfo;
 };
 

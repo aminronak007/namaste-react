@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { LOGO_URL } from "../../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../hooks/useOnlineStatus";
+import UserContext from "../../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
   const onlineStatus = useOnlineStatus();
-  // let btnName = "Login";
+  const data = useContext(UserContext);
+  const cartItems = useSelector((state) => state.cart.items);
 
   const handleSubmit = () => {
-    // btnName = "Logout";
     if (btnName === "Login") {
       setBtnName("Logout");
     } else {
@@ -39,11 +41,17 @@ const Header = () => {
           <li className="px-4">
             <Link to="/grocery">Grocery ✨</Link>
           </li>
-          <li className="px-4">Cart 🛒</li>
+          <li className="px-4">
+            <Link to="/cart">Cart 🛒 ({cartItems.length})</Link>
+          </li>
+
           <li className="px-4">
             <button onClick={handleSubmit} className="login-btn">
               {btnName}
             </button>
+          </li>
+          <li className="px-4 font-bold">
+            {btnName === "Logout" && data.loggedInUser}
           </li>
         </ul>
       </div>

@@ -10,11 +10,11 @@ class About extends Component {
       name: "",
     };
 
-    console.log("Parent Contructor");
+    // console.log("Parent Contructor");
   }
 
   async componentDidMount() {
-    console.log("Parent Component Did Mount");
+    // console.log("Parent Component Did Mount");
   }
 
   // componentDidUpdate() {
@@ -26,7 +26,7 @@ class About extends Component {
   // }
 
   render() {
-    console.log("Parent Render");
+    // console.log("Parent Render");
     const { name } = this.state;
     return (
       <div>

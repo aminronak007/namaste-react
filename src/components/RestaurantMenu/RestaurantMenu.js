@@ -1,48 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import Shimmer from "../Shimmer/Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../../hooks/useRestaurantMenu";
-// import { MENU_URL } from "../../utils/constants";
+import RestaurantCategory from "../RestaurantCategory/RestaurantCategory";
 
 const RestaurantMenu = () => {
+  const [showIndex, setShowIndex] = useState(null);
   const { resId } = useParams();
-  // const [resInfo, setResInfo] = useState(null);
   const id = resId.match(/\d+/g).join("");
-
   const resInfo = useRestaurantMenu(id);
-
-  // const fetchMenu = async () => {
-  //   try {
-  //     let url = MENU_URL(id);
-  //     const data = await fetch(url);
-  //     const json = await data.json();
-  //     // Optional Chaining
-  //     setResInfo(json?.data);
-  //   } catch (error) {
-  //     console.log("error", error);
-  //   }
-  // };
-
-  useEffect(() => {
-    // fetchMenu();
-    const timer = setInterval(() => {
-      console.log("React");
-    }, 1000);
-
-    // Unmounting Phase
-    return () => {
-      clearInterval(timer);
-    };
-    // Unmounting Phase
-  }, []);
 
   if (resInfo === null) return <Shimmer />;
 
   const { name, cuisines, costForTwoMessage } =
     resInfo?.cards[2]?.card?.card?.info;
-
-  const { itemCards } =
-    resInfo?.cards[4].groupedCard?.cardGroupMap?.REGULAR?.cards[2].card.card;
 
   const categories =
     resInfo?.cards[4].groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
@@ -52,21 +23,26 @@ const RestaurantMenu = () => {
     );
 
   return (
-    <div className="menu">
-      <h1>{name}</h1>
-      <p>
+    <div className="text-center">
+      <h1 className="font-bold my-10 text-2xl">{name}</h1>
+      <p className="font-bold text-lg">
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
-      <ul>
-        {itemCards?.map((item) => {
-          const { id, name, price, defaultPrice } = item?.card?.info;
-          return (
-            <li key={id}>
-              {name} - Rs.{(price || defaultPrice) / 100}
-            </li>
-          );
-        })}
-      </ul>
+
+      {/* Categories Accordians */}
+      {categories.map((category, index) => {
+        return (
+          // Controlled Component
+          <RestaurantCategory
+            key={category?.card?.card.title}
+            data={category?.card?.card}
+            showItems={index === showIndex ? true : false}
+            setShowIndex={() =>
+              setShowIndex(index === showIndex ? null : index)
+            }
+          />
+        );
+      })}
     </div>
   );
 };

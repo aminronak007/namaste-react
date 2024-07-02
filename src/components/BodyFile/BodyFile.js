@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RestaurantCard, { withOpenCloseLabel } from "../card/RestaurantCard";
 import Shimmer from "../Shimmer/Shimmer";
 import { RESTAURANT_SWIGGY_API } from "../../utils/constants";
 import useOnlineStatus from "../../hooks/useOnlineStatus";
 import { Link } from "react-router-dom";
+import UserContext from "../../utils/UserContext";
 
 const BodyFile = () => {
   const [reslists, setResLists] = useState([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
   const onlineStatus = useOnlineStatus();
-
+  const { setUserName } = useContext(UserContext);
   const RestaurantCardOpened = withOpenCloseLabel(RestaurantCard);
 
   const handleTopRatedClick = () => {
@@ -58,6 +59,8 @@ const BodyFile = () => {
     }
   };
 
+  const handleUserName = () => {};
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -102,6 +105,15 @@ const BodyFile = () => {
           >
             Top Rated Button
           </button>
+        </div>
+        <div className="search m-4 p-4">
+          <input
+            className="border border-solid border-black px-4 py-2 rounded-sm"
+            type="text"
+            name="username"
+            onChange={(e) => setUserName(e.target.value)}
+            placeholder="Username"
+          />
         </div>
       </div>
       <div className="flex flex-wrap">

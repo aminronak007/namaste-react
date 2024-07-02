@@ -6,6 +6,7 @@ import RestaurantMenu from "../components/RestaurantMenu/RestaurantMenu";
 // Chunking, Code Splitting, Lazy Loading, Dynamic Bundling, On Demand Loading for scaling or building your large scale web application.
 const Grocery = lazy(() => import("../components/Grocery/Grocery.js"));
 const BodyFile = lazy(() => import("../components/BodyFile/BodyFile.js"));
+const Cart = lazy(() => import("../components/Cart/Cart.js"));
 // Chunking, Code Splitting, Lazy Loading, Dynamic Bundling, On Demand Loading for scaling or building your large scale web application.
 
 const routes = [
@@ -28,6 +29,10 @@ const routes = [
   {
     path: "/restaurants/:resId",
     element: <RestaurantMenu />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
   },
 ];
 

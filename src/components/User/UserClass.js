@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import UserContext from "../../utils/UserContext";
 
 class UserClass extends Component {
   constructor(props) {
@@ -11,11 +12,11 @@ class UserClass extends Component {
       },
     };
 
-    console.log(this.props.name + " Child Constructor");
+    // console.log(this.props.name + " Child Constructor");
   }
 
   async componentDidMount() {
-    console.log(this.props.name + " Child Component Did Mount");
+    // console.log(this.props.name + " Child Component Did Mount");
     const data = await fetch("https://api.github.com/users/aminronak007");
     const json = await data.json();
 
@@ -23,24 +24,24 @@ class UserClass extends Component {
       userInfo: json,
     });
 
-    this.timer = setInterval(() => {
-      console.log("Namaste React");
-    }, 1000);
+    // this.timer = setInterval(() => {
+    //   console.log("Namaste React");
+    // }, 1000);
   }
 
   componentDidUpdate() {
-    console.log(this.props.name + " Child Component Did Update");
+    // console.log(this.props.name + " Child Component Did Update");
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
-    console.log(this.props.name + " Child Component will Unmount");
+    // clearInterval(this.timer);
+    // console.log(this.props.name + " Child Component will Unmount");
   }
 
   render() {
     const { avatar_url, name, location } = this.state.userInfo;
     // debugger;
-    console.log(this.props.name + " Child Render");
+    // console.log(this.props.name + " Child Render");
     return (
       <div className="user-card">
         {/* <h1>Count: {count}</h1>
@@ -54,6 +55,14 @@ class UserClass extends Component {
         >
           Count Increase
         </button> */}
+        <div>
+          Logged In User
+          <UserContext.Consumer>
+            {({ loggedInUser }) => (
+              <h1 className="font-bold">{loggedInUser}</h1>
+            )}
+          </UserContext.Consumer>
+        </div>
         <img src={avatar_url} alt="avatar" width={100} />
         <h2>Name: {name}</h2>
         <h3>Location: {location ? location : "-"}</h3>
