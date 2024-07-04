@@ -28,3 +28,19 @@
 - Creates Slice ex: cartSlice
 - Dispatch (action)
 - Selector (read)
+
+# Types of Testing (Developer)
+
+- Unit Testing
+- Integration Testing
+- End to End Testing - e2e testing
+
+# Setting up Testing in our app
+
+- Install React Testing Library
+- Installed Jest
+- Installed Babel dependencies
+- Configure Babel
+- Configure Parcel Config file to disable default Babel transpilation
+- Jest Configuration - npx jest --init
+- Instal jsdom library
