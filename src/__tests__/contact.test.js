@@ -33,7 +33,6 @@ describe("Contact Us Page Test Cases", () => {
     // Querying
     const inputBoxes = screen.getAllByRole("textbox");
     //   console.log("inputBoxes", inputBoxes);
-
     // Assertion
     expect(inputBoxes.length).toBe(2);
   });
