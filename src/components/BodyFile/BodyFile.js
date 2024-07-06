@@ -59,8 +59,6 @@ const BodyFile = () => {
     }
   };
 
-  const handleUserName = () => {};
-
   useEffect(() => {
     fetchData();
   }, []);
@@ -90,6 +88,7 @@ const BodyFile = () => {
             onChange={handleChange}
             placeholder="Search"
             value={search}
+            data-testid="searchInput"
           />
           <button
             className="px-4 py-2 bg-gray-100 ml-1 rounded-sm"

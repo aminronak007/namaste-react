@@ -5,7 +5,10 @@ const RestaurantCard = (props) => {
     props?.data;
 
   return (
-    <div className="restro-card m-4 p-2 w-[250px] h-[450px] bg-gray-100 hover:bg-gray-200">
+    <div
+      data-testid="resCard"
+      className="restro-card m-4 p-2 w-[250px] h-[450px] bg-gray-100 hover:bg-gray-200"
+    >
       <img
         className="rounded-md w-60 h-60"
         src={`${CDN_URL}/${cloudinaryImageId}`}

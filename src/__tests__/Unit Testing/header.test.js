@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import Header from "../components/header/Header";
+import Header from "../../components/header/Header";
 import { Provider } from "react-redux";
-import store from "../store/store";
+import store from "../../store/store";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
