@@ -3,6 +3,14 @@ import Contact from "../../pages/Contact/Contact";
 import "@testing-library/jest-dom";
 
 describe("Contact Us Page Test Cases", () => {
+  // beforeAll(() => {
+  //   console.log("Before All");
+  // });
+
+  // beforeEach(() => {
+  //   console.log("Before Each");
+  // });
+
   it("Should load contact us component", () => {
     render(<Contact />);
 
@@ -36,4 +44,12 @@ describe("Contact Us Page Test Cases", () => {
     // Assertion
     expect(inputBoxes.length).toBe(2);
   });
+
+  // afterAll(() => {
+  //   console.log("After All");
+  // });
+
+  // afterEach(() => {
+  //   console.log("After Each");
+  // });
 });
